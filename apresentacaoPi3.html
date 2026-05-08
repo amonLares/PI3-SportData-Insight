@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação Amon - Entrega 2</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e293b;
+            --accent: #38bdf8;
+            --bg: #f8fafc;
+            --text: #0f172a;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #ccc; }
+        .slide { 
+            width: 1280px; height: 720px; background: var(--bg); margin: 20px auto; 
+            position: relative; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column; padding: 60px; box-sizing: border-box;
+        }
+        .header { border-left: 8px solid var(--primary); padding-left: 20px; margin-bottom: 40px; }
+        h1 { color: var(--secondary); font-size: 48px; margin: 0; }
+        h2 { color: var(--primary); font-size: 32px; margin: 0; }
+        p { font-size: 24px; color: #475569; line-height: 1.6; }
+        
+        /* Gráficos em CSS para substituir imagens */
+        .chart-box { 
+            display: flex; gap: 20px; align-items: flex-end; height: 200px; 
+            background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0;
+        }
+        .bar { width: 60px; background: var(--primary); border-radius: 5px 5px 0 0; position: relative; }
+        .bar::after { content: attr(data-label); position: absolute; bottom: -30px; left: 0; font-size: 14px; width: 100%; text-align: center; }
+        
+        .footer { position: absolute; bottom: 40px; left: 60px; font-size: 18px; color: #94a3b8; border-top: 1px solid #e2e8f0; width: calc(100% - 120px); padding-top: 20px; }
+        .badge { background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 18px; font-weight: bold; }
+        
+        /* Estilo da Página de Título */
+        .title-slide { background: var(--secondary); color: white; justify-content: center; text-align: center; }
+        .title-slide h1 { color: white; font-size: 64px; }
+        .title-slide h2 { color: var(--accent); }
+        .name-tag { margin-top: 50px; font-size: 28px; }
+
+        .cluster-viz { display: flex; gap: 10px; flex-wrap: wrap; }
+        .dot { width: 30px; height: 30px; border-radius: 50%; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: CAPA -->
+    <div class="slide title-slide">
+        <div class="badge">PROJETO INTEGRADOR III</div>
+        <h1>SportData Insight</h1>
+        <h2>Análise de Engajamento Esportivo Universitário</h2>
+        <div class="name-tag">
+            <strong>Amon Brandão Lares</strong><br>
+            Turma: 5SC1 | Sistemas de Informação
+        </div>
+    </div>
+
+    <!-- SLIDE 2: JUSTIFICATIVA -->
+    <div class="slide">
+        <div class="header">
+            <h1>O Problema</h1>
+            <h2>O Paradoxo do Estudante Ativo</h2>
+        </div>
+        <p>Apesar da alta valorização de hábitos saudáveis (musculação e funcional), as competições e eventos das atléticas enfrentam baixa adesão.</p>
+        <div style="background: #e0f2fe; padding: 30px; border-radius: 15px; border-left: 10px solid var(--accent);">
+            <strong>Hipótese:</strong> Não falta interesse em saúde, falta identificação com o modelo tradicional ou barreiras logísticas de tempo e comunicação.
+        </div>
+        <div class="footer">Amon Brandão Lares - Turma 5SC1</div>
+    </div>
+
+    <!-- SLIDE 3: ANÁLISE DE DADOS (CÓDIGO) -->
+    <div class="slide">
+        <div class="header">
+            <h1>Análise Preliminar</h1>
+            <h2>Insights dos Dados em Python</h2>
+        </div>
+        <p>Utilizamos Python (Pandas/Seaborn) para cruzar variáveis de estilo de vida e participação.</p>
+        <div class="chart-box">
+            <div class="bar" style="height: 90%;" data-label="Treinam"></div>
+            <div class="bar" style="height: 30%; background: #fbbf24;" data-label="Participam"></div>
+            <div class="bar" style="height: 85%;" data-label="Interesse"></div>
+            <div class="bar" style="height: 45%; background: #f87171;" data-label="Eventos"></div>
+        </div>
+        <p style="font-size: 18px; margin-top: 40px;">⚠️ <strong>Insight:</strong> Existe um "GAP" de 60% entre quem se exercita e quem vai aos jogos.</p>
+        <div class="footer">Amon Brandão Lares - Turma 5SC1</div>
+    </div>
+
+    <!-- SLIDE 4: MODELO DE MACHINE LEARNING (CLUSTERIZAÇÃO) -->
+    <div class="slide">
+        <div class="header">
+            <h1>Inteligência Aplicada</h1>
+            <h2>Segmentação por Clusterização (K-Means)</h2>
+        </div>
+        <p>O algoritmo separou a comunidade em 3 perfis distintos:</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+            <div style="background:#f1f5f9; padding:20px; border-radius:10px;">
+                <div class="dot" style="background: #2563eb;"></div>
+                <h3>Engajado</h3>
+                <small>Alta frequência e alta participação.</small>
+            </div>
+            <div style="background:#f1f5f9; padding:20px; border-radius:10px;">
+                <div class="dot" style="background: #8b5cf6;"></div>
+                <h3>Atleta Solitário</h3>
+                <small>Treina muito (academia), mas não vai aos eventos.</small>
+            </div>
+            <div style="background:#f1f5f9; padding:20px; border-radius:10px;">
+                <div class="dot" style="background: #94a3b8;"></div>
+                <h3>Desconectado</h3>
+                <small>Baixo interesse em ambas as áreas.</small>
+            </div>
+        </div>
+        <div class="footer">Amon Brandão Lares - Turma 5SC1</div>
+    </div>
+
+    <!-- SLIDE 5: PROTÓTIPO DE DASHBOARD -->
+    <div class="slide">
+        <div class="header">
+            <h1>Protótipo do Produto</h1>
+            <h2>Dashboard de Decisão para Atléticas</h2>
+        </div>
+        <div style="display: flex; gap: 20px;">
+            <div style="flex: 1; background: #1e293b; color: #38bdf8; padding: 20px; border-radius: 10px; font-family: monospace;">
+                // Módulos do Sistema<br>
+                > Analisador de Sentimento<br>
+                > Mapa de Calor de Horários<br>
+                > Preditor de Adesão (ML)<br>
+                > Filtro por Curso/Período
+            </div>
+            <div style="flex: 1;">
+                <p>O sistema permitirá que os gestores identifiquem onde a comunicação está falhando e sugiram horários de eventos baseados no fluxo de treino dos alunos.</p>
+            </div>
+        </div>
+        <div class="footer">Amon Brandão Lares - Turma 5SC1</div>
+    </div>
+
+    <!-- SLIDE 6: CONCLUSÃO -->
+    <div class="slide title-slide" style="background: var(--primary);">
+        <h1>Obrigado!</h1>
+        <h2>Entrega 2 - Protótipo Concluído</h2>
+        <div class="name-tag">
+            <strong>Amon Brandão Lares</strong><br>
+            Turma 5SC1 | Projeto Integrador III
+        </div>
+    </div>
+
+</body>
+</html>
